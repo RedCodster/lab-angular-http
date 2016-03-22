@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CriminalsApp">
+  <head>
+    <meta charset="UTF-8">
+    <title>Criminals App</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/criminalsController.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <section ng-controller="CriminalsController">
+      <h1>Infamous Criminals</h1>
+      <ul id="criminals">
+        <li ng-repeat="criminal in criminals">
+          <span class='status'>{{criminal.status}}</span>
+          <em>{{criminal.name}}</em>
+          <button class='delete' ng-click='deleteCriminal(criminal)'></button>
+          <button type="button" class="btn btn-info btn-sm" ng-click='editCriminal(criminal)'>edit</button>
+        </li>
+      </ul>
+      <form id='newCriminal' ng-submit='saveCriminal()'>
+        <div>
+          <label>Name:</label><input ng-model='criminal.name' type='text' placeholder="Prof. Moriarty"></input>
+        </div>
+        <div>
+          <label>Location:</label><input ng-model='criminal.location' type='text' placeholder="Reichenbach Falls, CH"></input>
+        </div>
+        <div>
+          <label>Status:</label>
+          <select ng-model='criminal.status'>
+            <option>- Please Select One -</option>
+            <option value='dead'>Dead</option>
+            <option value='alive'>Alive</option>
+            <option value='unknown'>Unknown</option>
+          </select>
+        </div>
+        <div>
+          <input type='submit' value='add criminal'>Add Criminal</input>
+        </div>
+
+      </form>
+
+    </section>
+
+  </body>
+</html>
