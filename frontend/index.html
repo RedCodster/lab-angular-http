@@ -13,9 +13,11 @@
       <h1>Infamous Criminals</h1>
       <ul id="criminals">
         <li ng-repeat="criminal in criminals">
-          <span class='status'>{{criminal.status}}</span>
-          <em>{{criminal.name}}</em>
-          <button class='delete' ng-click='deleteCriminal(criminal)'></button>
+          <span class='status' ng-class="{'dead': criminal.status=='dead', 'alive': criminal.status=='alive'}">{{criminal.status}}</span>
+          <strong>{{criminal.name}}</strong>
+          <em>{{criminal.location}}</em>
+
+          <button class='delete' ng-click='deleteCriminal(criminal)'>delete</button>
           <button type="button" class="btn btn-info btn-sm" ng-click='editCriminal(criminal)'>edit</button>
         </li>
       </ul>
@@ -36,7 +38,8 @@
           </select>
         </div>
         <div>
-          <input type='submit' value='add criminal'>Add Criminal</input>
+          <input type='submit' value='Add Criminal' ng-show='createMode'>
+          <input type='submit' value='Edit Criminal' ng-hide='createMode'>
         </div>
 
       </form>

@@ -13,7 +13,7 @@ criminalsApp.controller('CriminalsController', ['$scope', '$http', function($sco
 
   function getCriminals () {
     $http({
-      method: 'GET'
+      method: 'GET',
       url: 'http://localhost:3000/criminals'
     }).then(function (resp){
       console.log('Success');
@@ -32,8 +32,9 @@ criminalsApp.controller('CriminalsController', ['$scope', '$http', function($sco
 
   function createCriminal () {
     $http({
-      method: 'POST'
-      url: 'http://localhost:3000/criminals', $scope.criminal
+      method: 'POST',
+      url: 'http://localhost:3000/criminals',
+      data: $scope.criminal
     }).then(function (resp){
       console.log('Success');
       getCriminals();
@@ -44,7 +45,7 @@ criminalsApp.controller('CriminalsController', ['$scope', '$http', function($sco
 
   function deleteCriminal(criminal) {
     $http({
-      method: 'DELETE'
+      method: 'DELETE',
       url: 'http://localhost:3000/criminals/:id'
     }).then(function (resp){
       console.log('Success');
@@ -66,13 +67,14 @@ criminalsApp.controller('CriminalsController', ['$scope', '$http', function($sco
 
   function updateCriminal() {
     $http({
-      method: 'PATCH'
-      url: 'http://localhost:3000/criminals/:id',$scope.criminal
+      method: 'PATCH',
+      url: 'http://localhost:3000/criminals/' + $scope.criminal._id,
+      data: $scope.criminal
     }).then(function (resp){
       console.log('Success');
       getCriminals();
-      }
-    );
+      $scope.createMode = true;
+    });
     $scope.criminal = {};
   }
 
